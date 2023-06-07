@@ -1,5 +1,4 @@
-import pymongo # pip install pymongo
-
+import pymongo 
 class Database:
     def __init__(self, database, collection):
         self.connect(database, collection)

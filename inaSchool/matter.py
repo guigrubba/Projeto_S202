@@ -64,4 +64,46 @@ class MatterDAO:
             print(f'Erro ao deletar motorista: {e}')
             return None
 
-    def add_teacherDAO(self, name:)       
+    def add_teacherDAO(self, name: str, teacher: Teacher):
+        try:
+            res = self.db.collection.update_one(
+                {'_id': id}, {'$push': {'professor(es)': teacher.to_dict()}})
+            print(f'Professor(a) adicionado(a)!')
+            return res
+        except Exception as e:
+            print(f'Erro ao adicionar professor(a): {e}')
+            return None
+    
+    def add_studentDAO(self, name: str, student: Student):      
+        try:
+            res = self.db.collection.update_one(
+                {'name': name}, {'$push': {'estudant(es)': student.to_dict()}})
+            print(f'Estudante adicionado(a)!')
+            return res
+        except Exception as e:
+            print(f'Erro ao adicionar estudante: {e}')
+            return None
+        
+    def remove_teacher(self, matter_name: str, teacher_cpf: str):
+        try:
+            res = self.db.collection.update_one(
+            {'_id': matter_name}, {'$pull': {'teacher': {'id': teacher_cpf}}}
+        )
+            print('Professor(a) removido!')
+            return res
+        except Exception as e:
+            print(f'Erro ao remover o(a) professor(a): {e}')
+            return None
+
+    def remove_student(self, matter_name: str, student_name: str):
+        try:
+            res = self.db.collection.update_one(
+            {'_id': matter_name}, {'$pull': {'student': {'id': student_name}}}
+        )
+            print('Estudante removido!')
+            return res
+        except Exception as e:
+            print(f'Erro ao remover o estudante: {e}')
+            return None  
+    
+    

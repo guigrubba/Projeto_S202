@@ -3,4 +3,8 @@ class Teacher:
         self.name = name
         self.passageiro = cpf
 
-    
+    def to_dict(self):
+        return {
+            "cpf": self.cpf,
+            "name": self.name
+        }

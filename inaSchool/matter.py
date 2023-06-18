@@ -1,3 +1,7 @@
+from teacher import Teacher
+from student import Student
+
+
 class Matter:
     def __init__(self, name: str):
         self.name = name
@@ -11,6 +15,12 @@ class Matter:
             "students": self.students,
             "teachers": self.teachers,
         }
+
+    def add_teacher(self, teacher: Teacher):
+        self.teachers.append(teacher)
+
+    def add_student(self, student: Student):
+        self.students.append(student)
         
 class MatterDAO:
     def __init__(self,database):
@@ -19,10 +29,10 @@ class MatterDAO:
     def create(self, matter):
         try:
             res = self.db.collection.insert_one(matter.__dict__)
-            print(f'Motorista adicionado com sucesso! {res.inserted_id}')
+            print(f'Materia adicionado com sucesso! {res.inserted_id}')
             return res.inserted_id
         except Exception as e:
-            print(f'Erro ao adicionar motorista: {e}')
+            print(f'Erro ao adicionar materia: {e}')
             return None
         
     def read(self, name: str):
@@ -38,7 +48,7 @@ class MatterDAO:
         try:
             res = self.db.collection.find_one({'name': old_name})
             self.db.collection.update_one({'_id':res._id}, {'$set':{'name': new_name}})
-            print(f'Nome atualizado!')
+            print(f'Nome da Materia atualizado!')
             return res
         except Exception as e:
             print(f'Erro ao atualizar: {e}')
@@ -53,3 +63,5 @@ class MatterDAO:
         except Exception as e:
             print(f'Erro ao deletar motorista: {e}')
             return None
+
+    def add_teacherDAO(self, name:)       

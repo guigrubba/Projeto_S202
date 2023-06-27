@@ -3,12 +3,12 @@ class Student:
         self.register_number = register_number
         self.name = name
         self.curse = curse
-        self.nota = 0
+        self.note = 0
         
     def to_dict(self):
         return {
             "register_number": self.register_number,
             "name": self.name,
             "students": self.curse,
-            "nota": self.nota
+            "note": self.note
         }

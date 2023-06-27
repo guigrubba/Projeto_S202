@@ -8,8 +8,8 @@ class SchoolCLI:
 
     def create_matter(self):
         name_matter = input('Digite o nome da materia')
-        res = self.matter_dao.create(name_matter)
-        print(f'{res.name} materia criada')
+        matter = Matter(name=name_matter)
+        self.matter_dao.create(matter)
 
     def add_student(self):
         name_student = input('Digite o nome do estudante')

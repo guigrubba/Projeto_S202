@@ -66,7 +66,7 @@ class MatterDAO:
     def add_teacherDAO(self, name: str, teacher: Teacher):
         try:
             res = self.db.collection.update_one(
-                {'name':name}, {'$push': {'teacher': teacher.to_dict()}})
+                {'name':name}, {'$push': {'teachers': teacher.to_dict()}})
             print(f'Professor(a) adicionado(a)!')
             return res
         except Exception as e:
@@ -76,7 +76,7 @@ class MatterDAO:
     def add_studentDAO(self, name: str, student: Student):      
         try:
             res = self.db.collection.update_one(
-                {'name': name}, {'$push': {'student': student.to_dict()}})
+                {'name': name}, {'$push': {'students': student.to_dict()}})
             print(f'Estudante adicionado(a)!')
             return res
         except Exception as e:
@@ -86,7 +86,7 @@ class MatterDAO:
     def update_note_student(self, matter_name: str, student_name: str, student_note):      
         try:
             res = self.db.collection.update_one(
-                {'name': matter_name}, {'student': {'name':student_name, '$set':{'note':student_note}}})
+                {'name': matter_name}, {'students': {'name':student_name, '$set':{'note':student_note}}})
             print(f'Nota do estudante adicionado(a)!')
             return res
         except Exception as e:
@@ -96,7 +96,7 @@ class MatterDAO:
     def remove_teacher(self, matter_name: str, teacher_cpf: str):
         try:
             res = self.db.collection.update_one(
-            {'name': matter_name}, {'$pull': {'teacher': {'id': teacher_cpf}}}
+            {'name': matter_name}, {'$pull': {'teachers': {'id': teacher_cpf}}}
         )
             print('Professor(a) removido!')
             return res
@@ -107,7 +107,7 @@ class MatterDAO:
     def remove_student(self, matter_name: str, student_name: str):
         try:
             res = self.db.collection.update_one(
-            {'name': matter_name}, {'$pull': {'student': {'id': student_name}}}
+            {'name': matter_name}, {'$pull': {'students': {'id': student_name}}}
         )
             print('Estudante removido!')
             return res

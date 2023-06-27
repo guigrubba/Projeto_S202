@@ -46,6 +46,7 @@ class MatterDAO:
     def update(self, old_name: str, new_name: str):
         try:
             res = self.db.collection.find_one({'name': old_name})
+            print(res._id)
             self.db.collection.update_one({'_id':res._id}, {'$set':{'name': new_name}})
             print(f'Nome da Materia atualizado!')
             return res

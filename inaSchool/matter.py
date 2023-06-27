@@ -86,8 +86,11 @@ class MatterDAO:
         
     def update_note_student(self, matter_name: str, student_name: str, student_note):      
         try:
+            # res = self.db.collection.update_one(
+            #     {'name': matter_name}, {'students': {'name':student_name}, {'$set':{'note': student_note}}})
             res = self.db.collection.update_one(
-                {'name': matter_name}, {'students': {'name':student_name, '$set':{'note':student_note}}})
+                {'name': matter_name, 'students.name': student_name},
+                {'$set': {'students.$.note': student_note}})
             print(f'Nota do estudante adicionado(a)!')
             return res
         except Exception as e:

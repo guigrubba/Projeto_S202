@@ -1,7 +1,6 @@
 from teacher import Teacher
 from student import Student
 
-
 class Matter:
     def __init__(self, name: str):
         self.name = name
@@ -88,7 +87,7 @@ class MatterDAO:
         try:
             res = self.db.collection.update_one(
                 {'name': matter_name}, {'student': {'name':student_name, '$set':{'note':student_note}}})
-            print(f'Estudante adicionado(a)!')
+            print(f'Nota do estudante adicionado(a)!')
             return res
         except Exception as e:
             print(f'Erro ao adicionar estudante: {e}')
@@ -97,7 +96,7 @@ class MatterDAO:
     def remove_teacher(self, matter_name: str, teacher_cpf: str):
         try:
             res = self.db.collection.update_one(
-            {'_id': matter_name}, {'$pull': {'teacher': {'id': teacher_cpf}}}
+            {'name': matter_name}, {'$pull': {'teacher': {'id': teacher_cpf}}}
         )
             print('Professor(a) removido!')
             return res
@@ -108,7 +107,7 @@ class MatterDAO:
     def remove_student(self, matter_name: str, student_name: str):
         try:
             res = self.db.collection.update_one(
-            {'_id': matter_name}, {'$pull': {'student': {'id': student_name}}}
+            {'name': matter_name}, {'$pull': {'student': {'id': student_name}}}
         )
             print('Estudante removido!')
             return res

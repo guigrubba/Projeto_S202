@@ -65,14 +65,14 @@ class SchoolCLI:
         while True:
             print('MENU PRINCIPAL:')
             print('1 - Criar materia')
-            print('2 - Adicionar Aluno(a) a uma materia existente materia')
-            print('3 - Adicionar Professor(a) a uma materia existente materia')
-            print('4 - Consultar materia')
-            print('5 - Atualizar nome da materia')
-            print('6 - Deletar materia')
-            print('7 - Remover um Aluno(a) da materia')
-            print('8 - Remover um Professor(a) da materia')
-            print('9 - Atualizar nota do(a) da materia')
+            print('2 - Adicionar Aluno(a) a uma materia existente materia: ')
+            print('3 - Adicionar Professor(a) a uma materia existente materia: ')
+            print('4 - Consultar materia: ')
+            print('5 - Atualizar nome da materia: ')
+            print('6 - Deletar materia: ')
+            print('7 - Remover um Aluno(a) da materia: ')
+            print('8 - Remover um Professor(a) da materia: ')
+            print('9 - Atualizar nota do(a) da materia: ')
             print('0 - Sair')
             opcao = input('Digite a opção desejada: ')
             if opcao == '1':
@@ -84,15 +84,15 @@ class SchoolCLI:
             elif opcao == '4':
                 self.read_matter()
             elif opcao == '5':
-                self.update_matter
+                self.update_matter()
             elif opcao == '6':
-                self.delete_matter
+                self.delete_matter()
             elif opcao == '7':
-                self.remove_student
+                self.remove_student()
             elif opcao == '8':
-                self.remove_teacher
+                self.remove_teacher()
             elif opcao == '9':
-                self.update_note
+                self.update_note()
             elif opcao == '0':
                 break
             else:
